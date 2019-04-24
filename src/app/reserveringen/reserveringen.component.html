@@ -1,0 +1,84 @@
+
+<mat-card class="mat-card">
+  <mat-card-header>
+    <div mat-card-avatar class=""></div>
+    <mat-card-title>Reserveringen</mat-card-title>
+  </mat-card-header>
+  <mat-card class="mat-card">
+<!--  <mat-form-field>  ONNODIG. dit wordt in bestellingen opgenomen -->
+<!--    <input matInput placeholder="Bestellingnummer" [(ngModel)]="reserveringDetails.Bestellingid">-->
+<!--  </mat-form-field>-->
+  <mat-form-field>
+  <input matInput placeholder="Tafelnummer" [(ngModel)]="reserveringDetails.tafel">
+</mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Aantal personen" [(ngModel)]="reserveringDetails.AantalPersonen">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Naam" [(ngModel)]="reserveringDetails.naam">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Telefoonnummer" [(ngModel)]="reserveringDetails.telefoon">
+  </mat-form-field>
+<!--  <mat-form-field>-->
+<!--    <input matInput placeholder="Tijdstip" [(ngModel)]="reserveringDetails.tijdstip">-->
+<!--  </mat-form-field>-->
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Kies een datum" [(ngModel)]="reserveringDetails.tijdstip">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  <mat-form-field>
+  <input matInput placeholder="reservering gebruikt" [(ngModel)]="reserveringDetails.reserveringgebruikt">
+</mat-form-field>
+  <button mat-raised-button (click)="addReservering()" color="primary">Add</button>
+  </mat-card>
+<div class="example-container mat-elevation-z8">
+  <mat-table [dataSource]="dataSource">
+    <p>is dit zichtbaar</p>
+
+
+    <ng-container matColumnDef="tafel">
+      <mat-header-cell *matHeaderCellDef> Tafelnummer </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.tafel}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="AantalPersonen">
+      <mat-header-cell *matHeaderCellDef> AantalPersonen </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.AantalPersonen}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="naam">
+      <mat-header-cell *matHeaderCellDef> naam </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.naam}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telefoon">
+      <mat-header-cell *matHeaderCellDef> telefoon </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.telefoon}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="tijdstip">
+      <mat-header-cell *matHeaderCellDef> tijdstip </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.tijdstip}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="reserveringgebruikt">
+      <mat-header-cell *matHeaderCellDef> reserveringgebruikt </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.reserveringgebruikt}} </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</div>
+  <br>
+  <a mat-raised-button class="menu-nav-button" routerLink="/." routerLinkActive="active">Terug naar menu</a>
+</mat-card>

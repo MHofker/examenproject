@@ -1,0 +1,114 @@
+
+<mat-card class="mat-card">
+  <mat-card-header>
+    <div mat-card-avatar class=""></div>
+    <mat-card-title>Bestellingen</mat-card-title>
+  </mat-card-header>
+  <mat-card class="mat-card">
+
+    <mat-form-field>
+      <input matInput placeholder="ReserveringNummer" [(ngModel)]="bestellingDetails.reserveringid">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Tafelnummer" [(ngModel)]="bestellingDetails.tafel">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-form-field>
+        <mat-label>Favorite food</mat-label>
+        <mat-select>
+          <form [formGroup]="myForm">
+
+            <div formArrayName="phones">
+
+              <div *ngFor="let phone of phoneForms.controls; let i=index"
+                   [formGroupName]="i">
+
+                <input formControlName="area">
+                <input formControlName="prefix">
+                <input formControlName="line">
+
+                <button (click)="deletePhone(i)">Delete</button>
+
+              </div>
+            </div>
+
+            <button (click)="addPhone()">Add Phone Number</button>
+
+          </form>
+        </mat-select>
+      </mat-form-field>
+<!--      <input matInput placeholder="Bestelde items" [(ngModel)]="bestellingDetails.besteldeItems">-->
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <input matInput placeholder="Tijdstip" [(ngModel)]="bestellingDetails.tijdstip">
+    </mat-form-field>
+
+
+    <button mat-raised-button (click)="addBestelling()" color="primary">Add</button>
+  </mat-card>
+  <div class="example-container mat-elevation-z8">
+    <mat-table [dataSource]="dataSource">
+      <p>is dit zichtbaar</p>
+
+
+      <ng-container matColumnDef="tafel">
+        <mat-header-cell *matHeaderCellDef> tafel </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.tafel}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="reserveringid">
+        <mat-header-cell *matHeaderCellDef> reserveringid </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.reserveringid}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="besteldeItems">
+        <mat-header-cell *matHeaderCellDef> besteldeItems </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              BesteldeItems
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          {{element.besteldeItems}}
+        </mat-expansion-panel>
+        </mat-cell>
+<!--        <mat-cell *matCellDef="let element"> {{element.besteldeItems}} </mat-cell>-->
+      </ng-container>
+
+
+      <ng-container matColumnDef="tijdstip">
+        <mat-header-cell *matHeaderCellDef> tijdstip </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.tijdstip}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-raised-button  color="primary" (click)="openDialog(element)">Edit</button>
+        </mat-cell>
+      </ng-container>
+
+
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </div>
+  <br>
+  <a mat-raised-button class="menu-nav-button" routerLink="/." routerLinkActive="active">Terug naar menu</a>
+</mat-card>
+
+
+
+
+<!--zodra compleet word bon zichtbaar-->

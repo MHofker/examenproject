@@ -1,0 +1,6 @@
+.maincard {
+  max-width: 400px;
+}
+.menu-nav-button {
+  width: 20%; flex-direction: column;
+}
